@@ -183,6 +183,43 @@ cc_proto_library(
 )
 
 proto_library(
+    name = "grid_proto",
+    srcs = ["schemas/proto/foxglove/Grid.proto"],
+    strip_import_prefix = "schemas/proto",
+    deps = [
+        ":packed_element_field_proto",
+        ":pose_proto",
+        ":vector2_proto",
+        "@protobuf//:timestamp_proto",
+    ],
+)
+
+cc_proto_library(
+    name = "grid_cc_proto",
+    deps = [
+        ":grid_proto",
+    ],
+)
+
+proto_library(
+    name = "image_annotations_proto",
+    srcs = ["schemas/proto/foxglove/ImageAnnotations.proto"],
+    strip_import_prefix = "schemas/proto",
+    deps = [
+        ":circle_annotation_proto",
+        ":points_annotation_proto",
+        ":text_annotation_proto",
+    ],
+)
+
+cc_proto_library(
+    name = "image_annotations_cc_proto",
+    deps = [
+        ":image_annotations_proto",
+    ],
+)
+
+proto_library(
     name = "key_value_pair_proto",
     srcs = ["schemas/proto/foxglove/KeyValuePair.proto"],
     strip_import_prefix = "schemas/proto",
